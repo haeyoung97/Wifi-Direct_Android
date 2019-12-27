@@ -12,6 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <!-- Market filtering --> 
     <uses-feature android:name="android.hardware.wifi.direct" android:required="true"/>
@@ -20,6 +21,15 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@android:style/Theme.Holo">
+        <provider
+            android:authorities="com.example.android.wifidirectactivity.fileprovider"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
         <activity
             android:name=".WiFiDirectActivity"
             android:label="@string/app_name" android:launchMode="singleTask">
@@ -35,4 +45,5 @@
         <service android:enabled="true" android:name=".FileTransferService" />
 
     </application>
+
 </manifest>
